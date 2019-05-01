@@ -3,10 +3,24 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HeaderComponent } from './header/header.component';
+import { ClassifiedsComponent } from './classifieds/classifieds.component';
+import { ClassifiedsListComponent } from './classifieds/classifieds-list/classifieds-list.component';
+import { ClassifiedsDetailComponent } from './classifieds/classifieds-detail/classifieds-detail.component';
+import { ClassifiedsItemComponent } from './classifieds/classifieds-list/classifieds-item/classifieds-item.component';
+import { FavoritesListComponent } from './favorites-list/favorites-list.component';
+import { FavoritesEditComponent } from './favorites-list/favorites-edit/favorites-edit.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    ClassifiedsComponent,
+    ClassifiedsListComponent,
+    ClassifiedsDetailComponent,
+    ClassifiedsItemComponent,
+    FavoritesListComponent,
+    FavoritesEditComponent
   ],
   imports: [
     BrowserModule,
