@@ -2,20 +2,21 @@
   <div class="col-sm-10">
     <app-favorites-edit></app-favorites-edit>
     <hr />
-    <p>The list</p>
+    <p>My Favorites</p>
   </div>
 </div>
 
-<div class="card mb-3">
-  <img class="card-img-top" src="..." alt="Card image cap" />
+<div class="card mb-3" *ngFor="let favorite of favorites">
+  <img
+    class="card-img-top"
+    src="{{ favorite.imageUrl }}"
+    alt="Card image cap"
+  />
   <div class="card-body">
-    <h5 class="card-title">Card title</h5>
+    <h5 class="card-title">{{ favorite.name }}</h5>
+    <p class="card-text">{{ favorite.description }}</p>
     <p class="card-text">
-      This is a wider card with supporting text below as a natural lead-in to
-      additional content. This content is a little bit longer.
-    </p>
-    <p class="card-text">
-      <small class="text-muted">Last updated 3 mins ago</small>
+      <small class="text-muted">{{ favorite.price }}</small>
     </p>
   </div>
 </div>
