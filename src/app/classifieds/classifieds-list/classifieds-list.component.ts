@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 import { Classified } from "../classified.model";
 @Component({
   selector: "app-classifieds-list",
@@ -6,6 +6,8 @@ import { Classified } from "../classified.model";
   styleUrls: ["./classifieds-list.component.scss"]
 })
 export class ClassifiedsListComponent implements OnInit {
+  //
+  @Output() classifiedEmitted = new EventEmitter<Classified>();
   //
   classifieds: Classified[] = [
     new Classified(
@@ -25,4 +27,7 @@ export class ClassifiedsListComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
+  onclassifiedSelected(item: Classified) {
+    this.classifiedEmitted.emit(item);
+  }
 }

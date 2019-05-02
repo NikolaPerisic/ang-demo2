@@ -16,18 +16,9 @@
     </p>
   </div>
 </div> -->
-<div class="list-group" *ngFor="let ad of classifieds">
-  <a
-    href="#"
-    class="list-group-item list-group-item-action flex-column align-items-start"
-  >
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">{{ ad.name }}</h5>
-      <small>{{ ad.price }} $</small>
-    </div>
-    <p class="mb-1">
-      {{ ad.description }}
-    </p>
-    <small>some text</small>
-  </a>
-</div>
+
+<app-classifieds-item
+  *ngFor="let item of classifieds"
+  [classified]="item"
+  (classifiedSelected)="onclassifiedSelected(item)"
+></app-classifieds-item>

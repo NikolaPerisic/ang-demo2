@@ -1,3 +1,25 @@
-<p>
-  classifieds-detail works!
-</p>
+<div class="row">
+  <div class="col-sm-12">
+    <img
+      [src]="classified.imageUrl"
+      alt="{{ classified.name }}"
+      class="img-responsive"
+      style="max-height: 300px"
+    />
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <h1>{{ classified.name }}</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    <button class="btn btn-secondary">Add To Favorites</button>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-12">
+    {{ classified.description }}
+  </div>
+</div>
