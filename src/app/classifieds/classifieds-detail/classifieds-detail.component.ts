@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { Classified } from "../classified.model";
 
 @Component({
@@ -8,7 +8,13 @@ import { Classified } from "../classified.model";
 })
 export class ClassifiedsDetailComponent implements OnInit {
   @Input() classified: Classified;
+  @Output() favoriteItem = new EventEmitter<Classified>();
   constructor() {}
 
   ngOnInit() {}
+  //
+  addToFavorites(favoriteItem: Classified) {
+    console.log(favoriteItem);
+    this.favoriteItem.emit(favoriteItem);
+  }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { Classified } from "./classified.model";
 
 @Component({
@@ -7,8 +7,15 @@ import { Classified } from "./classified.model";
   styleUrls: ["./classifieds.component.scss"]
 })
 export class ClassifiedsComponent implements OnInit {
+  @Input() favoriteItem: Classified;
+  favoritesArr = [];
   selectedClassified: Classified;
+
   constructor() {}
 
   ngOnInit() {}
+  addNewToFavorites(item: Classified) {
+    this.favoritesArr.push(item);
+    console.log(this.favoritesArr);
+  }
 }
