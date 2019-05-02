@@ -1,5 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Classified } from "../classified.model";
+import { ClassifiedsService } from "../classifieds.service";
 @Component({
   selector: "app-classifieds-list",
   templateUrl: "./classifieds-list.component.html",
@@ -7,27 +8,13 @@ import { Classified } from "../classified.model";
 })
 export class ClassifiedsListComponent implements OnInit {
   //
-  @Output() classifiedEmitted = new EventEmitter<Classified>();
+
   //
-  classifieds: Classified[] = [
-    new Classified(
-      "Test Ads",
-      "This is testing",
-      "https://upload.wikimedia.org/wikipedia/commons/4/48/Whippet_Safety_Bicycle.jpg",
-      430
-    ),
-    new Classified(
-      "This is a test",
-      "Testing 123",
-      "https://www.batchbicycles.com/media/catalog/product/cache/e4d64343b1bc593f1c5348fe05efa4a6/p/r/product_imagebalance_blue_3x.jpg",
-      430
-    )
-  ];
+  classifieds: Classified[];
 
-  constructor() {}
+  constructor(private classifiedsService: ClassifiedsService) {}
 
-  ngOnInit() {}
-  onclassifiedSelected(item: Classified) {
-    this.classifiedEmitted.emit(item);
+  ngOnInit() {
+    this.classifieds = this.classifiedsService.getClassifieds();
   }
 }

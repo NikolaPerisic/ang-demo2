@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { Classified } from "../../classified.model";
+import { ClassifiedsService } from "../../classifieds.service";
 @Component({
   selector: "app-classifieds-item",
   templateUrl: "./classifieds-item.component.html",
@@ -7,11 +8,10 @@ import { Classified } from "../../classified.model";
 })
 export class ClassifiedsItemComponent implements OnInit {
   @Input() classified: Classified;
-  @Output() classifiedSelected = new EventEmitter<void>();
-  constructor() {}
+  constructor(private classifiedsService: ClassifiedsService) {}
 
   ngOnInit() {}
   onSelected() {
-    this.classifiedSelected.emit();
+    this.classifiedsService.classifiedSelected.emit(this.classified);
   }
 }
