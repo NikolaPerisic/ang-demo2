@@ -10,6 +10,7 @@ import { ClassifiedsListComponent } from "./classifieds/classifieds-list/classif
 import { ClassifiedsDetailComponent } from "./classifieds/classifieds-detail/classifieds-detail.component";
 import { ClassifiedsItemComponent } from "./classifieds/classifieds-list/classifieds-item/classifieds-item.component";
 import { FavoritesListComponent } from "./favorites-list/favorites-list.component";
+import { ClassifiedStartComponent } from "./classifieds/classified-start/classified-start.component";
 
 const appRoutes: Routes = [
   {
@@ -19,7 +20,17 @@ const appRoutes: Routes = [
   },
   {
     path: "classifieds",
-    component: ClassifiedsComponent
+    component: ClassifiedsComponent,
+    children: [
+      {
+        path: "",
+        component: ClassifiedStartComponent
+      },
+      {
+        path: ":id",
+        component: ClassifiedsDetailComponent
+      }
+    ]
   },
   {
     path: "favorites",
@@ -35,7 +46,8 @@ const appRoutes: Routes = [
     ClassifiedsListComponent,
     ClassifiedsDetailComponent,
     ClassifiedsItemComponent,
-    FavoritesListComponent
+    FavoritesListComponent,
+    ClassifiedStartComponent
   ],
   imports: [BrowserModule, AppRoutingModule, RouterModule.forRoot(appRoutes)],
   providers: [],

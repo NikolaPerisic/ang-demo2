@@ -1,6 +1,7 @@
 <div class="row">
   <div class="col-sm-12">
-    <div class="btn btn-success">New Ad</div>
+    <div class="btn btn-success mt-3">New Ad</div>
+    <hr />
   </div>
 </div>
 <!-- <div class="card mb-3" *ngFor="let ad of classifieds">
@@ -16,8 +17,10 @@
     </p>
   </div>
 </div> -->
-
-<app-classifieds-item
-  *ngFor="let item of classifieds"
-  [classified]="item"
-></app-classifieds-item>
+<div>
+  <app-classifieds-item
+    *ngFor="let item of classifieds; let i = index"
+    [classified]="item"
+    [index]="i"
+  ></app-classifieds-item>
+</div>

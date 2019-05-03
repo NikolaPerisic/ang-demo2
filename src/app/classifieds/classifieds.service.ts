@@ -19,6 +19,9 @@ export class ClassifiedsService {
       430
     )
   ];
+  getClassified(id: number) {
+    return this.classifieds[id];
+  }
   getClassifieds() {
     return this.classifieds.slice();
   }

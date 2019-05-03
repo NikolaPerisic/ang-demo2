@@ -3,13 +3,6 @@
     <app-classifieds-list></app-classifieds-list>
   </div>
   <div class="col-md-7">
-    <app-classifieds-detail
-      *ngIf="selectedClassified; else infoText"
-      [classified]="selectedClassified"
-      (favoriteItem)="addNewToFavorites($event)"
-    ></app-classifieds-detail>
-    <ng-template #infoText>
-      <p>Please select your Ad</p>
-    </ng-template>
+    <router-outlet></router-outlet>
   </div>
 </div>

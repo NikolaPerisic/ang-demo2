@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { Classified } from "../../classified.model";
-import { ClassifiedsService } from "../../classifieds.service";
+
 @Component({
   selector: "app-classifieds-item",
   templateUrl: "./classifieds-item.component.html",
@@ -8,10 +8,8 @@ import { ClassifiedsService } from "../../classifieds.service";
 })
 export class ClassifiedsItemComponent implements OnInit {
   @Input() classified: Classified;
-  constructor(private classifiedsService: ClassifiedsService) {}
+  @Input() index: number;
+  constructor() {}
 
   ngOnInit() {}
-  onSelected() {
-    this.classifiedsService.classifiedSelected.emit(this.classified);
-  }
 }
