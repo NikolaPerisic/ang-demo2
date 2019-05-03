@@ -1,7 +1,7 @@
 import { Classified } from "../classifieds/classified.model";
 
 export class FavoritesService {
-  private favoritesArr = [];
+  private favoritesArr: Classified[] = [];
   //
   addNewToFavorites(item: Classified) {
     let flag: boolean = false;

@@ -1,9 +1,6 @@
 import { Classified } from "./classified.model";
-import { EventEmitter } from "@angular/core";
 
 export class ClassifiedsService {
-  //
-  classifiedSelected = new EventEmitter<Classified>();
   //
   private classifieds: Classified[] = [
     new Classified(

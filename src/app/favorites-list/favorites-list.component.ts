@@ -9,7 +9,7 @@ import { Classified } from "../classifieds/classified.model";
 })
 export class FavoritesListComponent implements OnInit {
   //
-  favorites = [];
+  favorites: Classified[] = [];
   //
   constructor(private favoritesService: FavoritesService) {}
 

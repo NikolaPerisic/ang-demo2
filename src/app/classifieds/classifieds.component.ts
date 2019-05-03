@@ -1,5 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
-import { Classified } from "./classified.model";
+import { Component, OnInit } from "@angular/core";
 import { ClassifiedsService } from "./classifieds.service";
 
 @Component({
@@ -9,21 +8,7 @@ import { ClassifiedsService } from "./classifieds.service";
   providers: [ClassifiedsService]
 })
 export class ClassifiedsComponent implements OnInit {
-  @Input() favoriteItem: Classified;
-  favoritesArr = [];
-  selectedClassified: Classified;
+  constructor() {}
 
-  constructor(private classifiedsService: ClassifiedsService) {}
-
-  ngOnInit() {
-    this.classifiedsService.classifiedSelected.subscribe(
-      (classified: Classified) => {
-        this.selectedClassified = classified;
-      }
-    );
-  }
-  addNewToFavorites(item: Classified) {
-    this.favoritesArr.push(item);
-    console.log(this.favoritesArr);
-  }
+  ngOnInit() {}
 }
