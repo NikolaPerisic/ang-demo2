@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">Classifieds</a>
+  <a class="navbar-brand" routerLink="/classifieds">Classifieds</a>
   <button
     class="navbar-toggler"
     type="button"
@@ -14,20 +14,17 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#" (click)="onSelect('classifieds')"
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/classifieds"
           >Home <span class="sr-only">(current)</span></a
         >
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#" (click)="onSelect('favorites')"
-          >Favorites</a
-        >
+      <li class="nav-item" routerLinkActive="active">
+        <a class="nav-link" routerLink="/favorites">Favorites</a>
       </li>
       <li class="nav-item dropdown">
         <a
           class="nav-link dropdown-toggle"
-          href="#"
           id="navbarDropdown"
           role="button"
           data-toggle="dropdown"
@@ -37,8 +34,8 @@
           Dropdown
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item">Action</a>
+          <a class="dropdown-item">Another action</a>
         </div>
       </li>
     </ul>

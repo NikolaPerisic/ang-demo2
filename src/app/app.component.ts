@@ -9,8 +9,4 @@ import { FavoritesService } from "./favorites-list/favorites.service";
 })
 export class AppComponent {
   title = "ang-classifieds";
-  loadedFeature = "classifieds";
-  onNavigate(feature: string) {
-    this.loadedFeature = feature;
-  }
 }
