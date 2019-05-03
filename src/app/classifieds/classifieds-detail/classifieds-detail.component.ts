@@ -1,5 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { Classified } from "../classified.model";
+import { FavoritesService } from "src/app/favorites-list/favorites.service";
 
 @Component({
   selector: "app-classifieds-detail",
@@ -8,13 +9,12 @@ import { Classified } from "../classified.model";
 })
 export class ClassifiedsDetailComponent implements OnInit {
   @Input() classified: Classified;
-  @Output() favoriteItem = new EventEmitter<Classified>();
-  constructor() {}
+
+  constructor(private favoritesService: FavoritesService) {}
 
   ngOnInit() {}
   //
   addToFavorites(favoriteItem: Classified) {
-    console.log(favoriteItem);
-    this.favoriteItem.emit(favoriteItem);
+    this.favoritesService.addNewToFavorites(favoriteItem);
   }
 }

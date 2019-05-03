@@ -1,20 +1,28 @@
 import { Classified } from "../classifieds/classified.model";
 
 export class FavoritesService {
-  favoritesArr = [
-    new Classified(
-      "Test Ads",
-      "This is testing",
-      "https://upload.wikimedia.org/wikipedia/commons/4/48/Whippet_Safety_Bicycle.jpg",
-      430
-    )
-  ];
+  private favoritesArr = [];
   //
   addNewToFavorites(item: Classified) {
-    this.favoritesArr.push(item);
-    console.log(this.favoritesArr);
+    let flag: boolean = false;
+    this.favoritesArr.map(el => {
+      if (el.name === item.name) {
+        flag = true;
+      }
+    });
+    if (!flag) {
+      this.favoritesArr.push(item);
+    }
   }
   getFavorites() {
-    return this.favoritesArr.slice();
+    return this.favoritesArr;
+  }
+  removeFavorite(item: Classified) {
+    this.favoritesArr.map((el, i) => {
+      if (el.name === item.name) {
+        this.favoritesArr.splice(i, 1);
+      }
+    });
+    return this.favoritesArr;
   }
 }

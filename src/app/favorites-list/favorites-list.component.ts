@@ -16,4 +16,7 @@ export class FavoritesListComponent implements OnInit {
   ngOnInit() {
     this.favorites = this.favoritesService.getFavorites();
   }
+  removeFavorite(favorite: Classified) {
+    this.favoritesService.removeFavorite(favorite);
+  }
 }
