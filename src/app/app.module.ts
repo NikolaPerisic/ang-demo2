@@ -11,6 +11,7 @@ import { ClassifiedsDetailComponent } from "./classifieds/classifieds-detail/cla
 import { ClassifiedsItemComponent } from "./classifieds/classifieds-list/classifieds-item/classifieds-item.component";
 import { FavoritesListComponent } from "./favorites-list/favorites-list.component";
 import { ClassifiedStartComponent } from "./classifieds/classified-start/classified-start.component";
+import { ClassifiedNewComponent } from "./classifieds/classified-new/classified-new.component";
 
 const appRoutes: Routes = [
   {
@@ -25,6 +26,10 @@ const appRoutes: Routes = [
       {
         path: "",
         component: ClassifiedStartComponent
+      },
+      {
+        path: "new",
+        component: ClassifiedNewComponent
       },
       {
         path: ":id",
@@ -47,7 +52,8 @@ const appRoutes: Routes = [
     ClassifiedsDetailComponent,
     ClassifiedsItemComponent,
     FavoritesListComponent,
-    ClassifiedStartComponent
+    ClassifiedStartComponent,
+    ClassifiedNewComponent
   ],
   imports: [BrowserModule, AppRoutingModule, RouterModule.forRoot(appRoutes)],
   providers: [],

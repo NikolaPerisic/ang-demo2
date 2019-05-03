@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Classified } from "../classified.model";
 import { ClassifiedsService } from "../classifieds.service";
+import { ActivatedRoute, Router } from "@angular/router";
 @Component({
   selector: "app-classifieds-list",
   templateUrl: "./classifieds-list.component.html",
@@ -12,9 +13,16 @@ export class ClassifiedsListComponent implements OnInit {
   //
   classifieds: Classified[];
 
-  constructor(private classifiedsService: ClassifiedsService) {}
+  constructor(
+    private classifiedsService: ClassifiedsService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.classifieds = this.classifiedsService.getClassifieds();
+  }
+  newAd() {
+    this.router.navigate(["new"], { relativeTo: this.route });
   }
 }
