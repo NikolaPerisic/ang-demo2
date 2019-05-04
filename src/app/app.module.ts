@@ -1,6 +1,7 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
+import { FormsModule } from "@angular/forms";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -12,6 +13,7 @@ import { ClassifiedsItemComponent } from "./classifieds/classifieds-list/classif
 import { FavoritesListComponent } from "./favorites-list/favorites-list.component";
 import { ClassifiedStartComponent } from "./classifieds/classified-start/classified-start.component";
 import { ClassifiedNewComponent } from "./classifieds/classified-new/classified-new.component";
+import { ClassifiedsService } from "./classifieds/classifieds.service";
 
 const appRoutes: Routes = [
   {
@@ -40,6 +42,10 @@ const appRoutes: Routes = [
   {
     path: "favorites",
     component: FavoritesListComponent
+  },
+  {
+    path: "**",
+    redirectTo: "/classifieds"
   }
 ];
 
@@ -55,8 +61,13 @@ const appRoutes: Routes = [
     ClassifiedStartComponent,
     ClassifiedNewComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, RouterModule.forRoot(appRoutes)],
-  providers: [],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    RouterModule.forRoot(appRoutes),
+    FormsModule
+  ],
+  providers: [ClassifiedsService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

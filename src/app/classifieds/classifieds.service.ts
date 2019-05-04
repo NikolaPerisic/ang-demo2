@@ -2,7 +2,7 @@ import { Classified } from "./classified.model";
 
 export class ClassifiedsService {
   //
-  private classifieds: Classified[] = [
+  classifieds: Classified[] = [
     new Classified(
       "Test Ads",
       "This is testing",
@@ -20,6 +20,9 @@ export class ClassifiedsService {
     return this.classifieds[id];
   }
   getClassifieds() {
-    return this.classifieds.slice();
+    return this.classifieds;
+  }
+  postClassified(item: Classified) {
+    this.classifieds.push(item);
   }
 }

@@ -1,0 +1,6 @@
+.btn:disabled {
+  cursor: not-allowed;
+}
+input.ng-invalid.ng-touched {
+  border: 1px solid salmon;
+}
