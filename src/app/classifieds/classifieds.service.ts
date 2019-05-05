@@ -10,20 +10,7 @@ export class ClassifiedsService {
   constructor(private http: HttpClient) {}
   //
 
-  classifieds: Classified[] = [
-    new Classified(
-      "Test Ads",
-      "This is testing",
-      "https://upload.wikimedia.org/wikipedia/commons/4/48/Whippet_Safety_Bicycle.jpg",
-      430
-    ),
-    new Classified(
-      "This is a test",
-      "Testing 123",
-      "https://www.batchbicycles.com/media/catalog/product/cache/e4d64343b1bc593f1c5348fe05efa4a6/p/r/product_imagebalance_blue_3x.jpg",
-      430
-    )
-  ];
+  classifieds: Classified[] = [];
   getClassified(id: number) {
     return this.classifieds[id];
   }
@@ -34,6 +21,7 @@ export class ClassifiedsService {
       )
       .pipe(
         map((data: Classified[]) => {
+          const adArray: Classified[] = [];
           Object.entries(data).map(([key, val]) => {
             const item = new Classified(
               val.name,
@@ -41,8 +29,9 @@ export class ClassifiedsService {
               val.imageUrl,
               val.price
             );
-            this.classifieds.push(item);
+            adArray.push(item);
           });
+          this.classifieds = adArray;
           return this.classifieds;
         })
       );

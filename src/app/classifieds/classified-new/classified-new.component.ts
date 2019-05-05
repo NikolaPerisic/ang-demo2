@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { Classified } from "../classified.model";
 import { ClassifiedsService } from "../classifieds.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-classified-new",
@@ -13,7 +14,10 @@ export class ClassifiedNewComponent implements OnInit {
   newAd: Classified;
   defaultCondition: string = "Used";
   //
-  constructor(private classifiedsService: ClassifiedsService) {}
+  constructor(
+    private classifiedsService: ClassifiedsService,
+    private router: Router
+  ) {}
 
   ngOnInit() {}
   onSubmit() {
@@ -25,7 +29,7 @@ export class ClassifiedNewComponent implements OnInit {
     );
 
     this.classifiedsService.postClassified(this.newAd).subscribe(result => {
-      console.log(result);
+      this.router.navigate(["/classifieds"]);
     }),
       error => console.log(error);
   }
