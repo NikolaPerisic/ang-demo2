@@ -1,6 +1,8 @@
 import * as firebase from "firebase";
 
 export class AuthService {
+  user: firebase.User;
+  //
   signUp(email: string, password: string) {
     firebase
       .auth()
