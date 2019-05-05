@@ -15,6 +15,9 @@ import { FavoritesListComponent } from "./favorites-list/favorites-list.componen
 import { ClassifiedStartComponent } from "./classifieds/classified-start/classified-start.component";
 import { ClassifiedNewComponent } from "./classifieds/classified-new/classified-new.component";
 import { ClassifiedsService } from "./classifieds/classifieds.service";
+import { SignupComponent } from "./auth/signup/signup.component";
+import { LoginComponent } from "./auth/login/login.component";
+import { AuthService } from "./auth/auth.service";
 
 const appRoutes: Routes = [
   {
@@ -45,6 +48,14 @@ const appRoutes: Routes = [
     component: FavoritesListComponent
   },
   {
+    path: "signup",
+    component: SignupComponent
+  },
+  {
+    path: "login",
+    component: LoginComponent
+  },
+  {
     path: "**",
     redirectTo: "/classifieds"
   }
@@ -60,7 +71,9 @@ const appRoutes: Routes = [
     ClassifiedsItemComponent,
     FavoritesListComponent,
     ClassifiedStartComponent,
-    ClassifiedNewComponent
+    ClassifiedNewComponent,
+    SignupComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +82,7 @@ const appRoutes: Routes = [
     FormsModule,
     HttpClientModule
   ],
-  providers: [ClassifiedsService],
+  providers: [ClassifiedsService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
