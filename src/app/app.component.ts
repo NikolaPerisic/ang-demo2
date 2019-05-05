@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FavoritesService } from "./favorites-list/favorites.service";
 import * as firebase from "firebase";
-import envVariable from "../../envVariable";
+import { envVariable } from "../../envVariable";
 
 @Component({
   selector: "app-root",
