@@ -24,6 +24,9 @@ export class ClassifiedNewComponent implements OnInit {
       this.submitAd.value.price
     );
 
-    this.classifiedsService.postClassified(this.newAd);
+    this.classifiedsService.postClassified(this.newAd).subscribe(result => {
+      console.log(result);
+    }),
+      error => console.log(error);
   }
 }

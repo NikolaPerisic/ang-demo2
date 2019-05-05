@@ -20,8 +20,11 @@ export class ClassifiedsListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.classifieds = this.classifiedsService.getClassifieds();
+    this.classifiedsService.getClassifieds().subscribe(result => {
+      this.classifieds = result;
+    });
   }
+
   newAd() {
     this.router.navigate(["new"], { relativeTo: this.route });
   }
