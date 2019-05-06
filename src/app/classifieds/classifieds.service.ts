@@ -3,11 +3,12 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { map } from "rxjs/operators";
 import { Observable } from "rxjs";
+import { AuthService } from "../auth/auth.service";
 
 @Injectable()
 export class ClassifiedsService {
   //
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
   //
 
   classifieds: Classified[] = [];
@@ -37,9 +38,9 @@ export class ClassifiedsService {
       );
   }
   postClassified(item: Classified) {
-    this.classifieds.push(item);
+    const token = this.authService.getToken();
     return this.http.post(
-      "https://ang-classifieds.firebaseio.com/classifieds.json",
+      "https://ang-classifieds.firebaseio.com/classifieds.json?auth=" + token,
       item
     );
   }
