@@ -4,11 +4,16 @@ import { HttpClient } from "@angular/common/http";
 import { map } from "rxjs/operators";
 import { Observable } from "rxjs";
 import { AuthService } from "../auth/auth.service";
+import { Router } from "@angular/router";
 
 @Injectable()
 export class ClassifiedsService {
   //
-  constructor(private http: HttpClient, private authService: AuthService) {}
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService,
+    private router: Router
+  ) {}
   //
 
   classifieds: Classified[] = [];

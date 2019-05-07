@@ -29,8 +29,10 @@ export class ClassifiedNewComponent implements OnInit {
     );
 
     this.classifiedsService.postClassified(this.newAd).subscribe(result => {
-      this.router.navigate(["/classifieds"]);
-    }),
-      error => console.log(error);
+      this.router.navigate(["/"]).then(() => {
+        this.router.navigate(["/classifieds"]);
+      });
+    });
+    error => console.log(error);
   }
 }
