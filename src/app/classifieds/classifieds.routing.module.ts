@@ -8,7 +8,7 @@ import { ClassifiedsDetailComponent } from "./classifieds-detail/classifieds-det
 
 const routes: Routes = [
   {
-    path: "classifieds",
+    path: "",
     component: ClassifiedsComponent,
     children: [
       {

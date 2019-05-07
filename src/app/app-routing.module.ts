@@ -3,12 +3,17 @@ import { Routes, RouterModule } from "@angular/router";
 import { FavoritesListComponent } from "./favorites-list/favorites-list.component";
 import { SignupComponent } from "./auth/signup/signup.component";
 import { LoginComponent } from "./auth/login/login.component";
+import { HomeComponent } from "./home/home.component";
 
 const routes: Routes = [
   {
     path: "",
-    redirectTo: "/classifieds",
+    component: HomeComponent,
     pathMatch: "full"
+  },
+  {
+    path: "classifieds",
+    loadChildren: "./classifieds/classifieds.module#ClassifiedsModule"
   },
   {
     path: "favorites",
