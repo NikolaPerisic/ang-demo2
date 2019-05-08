@@ -15,9 +15,16 @@
 </div>
 <div class="row">
   <div class="col-sm-12">
-    <button class="btn btn-secondary" (click)="addToFavorites(classified)">
+    <button
+      [disabled]="!authService.isAuthenticated()"
+      class="btn btn-secondary"
+      (click)="addToFavorites(classified)"
+    >
       Add To Favorites
     </button>
+    <span *ngIf="!authService.isAuthenticated()" class="form-text text-muted"
+      >Please Login First!</span
+    >
   </div>
 </div>
 <div class="row">
