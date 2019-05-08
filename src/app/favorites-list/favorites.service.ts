@@ -1,14 +1,10 @@
 import { Injectable } from "@angular/core";
 import { Classified } from "../classifieds/classified.model";
 import { AuthService } from "../auth/auth.service";
-<<<<<<< HEAD
-import { Injectable } from "@angular/core";
 
-=======
 import { Favorite } from "./favorites.model";
 import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
->>>>>>> 231075dd08569fa8be2be6bb4348c513909f901c
+
 @Injectable()
 export class FavoritesService {
   private favoritesArr: Classified[] = [];
@@ -19,7 +15,6 @@ export class FavoritesService {
   //
   constructor(private authService: AuthService, private http: HttpClient) {}
   //
-  constructor(private authService: AuthService) {}
   //
   addNewToFavorites(item: Classified) {
     this.favorite.email = this.authService.getUser();
@@ -38,7 +33,6 @@ export class FavoritesService {
     }
   }
   getFavorites() {
-    console.log(this.authService.getUser());
     return this.favoritesArr;
   }
   removeFavorite(item: Classified) {
