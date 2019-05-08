@@ -1,9 +1,25 @@
+import { Injectable } from "@angular/core";
 import { Classified } from "../classifieds/classified.model";
-
+import { AuthService } from "../auth/auth.service";
+import { Favorite } from "./favorites.model";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
+@Injectable()
 export class FavoritesService {
   private favoritesArr: Classified[] = [];
+  private favorite: Favorite = {
+    email: "",
+    classifiedId: ""
+  };
+  //
+  constructor(private authService: AuthService, private http: HttpClient) {}
   //
   addNewToFavorites(item: Classified) {
+    this.favorite.email = this.authService.getUser();
+    this.favorite.classifiedId = item.id;
+    this.postFavorite(this.favorite);
+    console.log(this.favorite);
+
     let flag: boolean = false;
     this.favoritesArr.map(el => {
       if (el.name === item.name) {
@@ -24,5 +40,15 @@ export class FavoritesService {
       }
     });
     return this.favoritesArr;
+  }
+  postFavorite(item: Favorite) {
+    console.log("call");
+    const token = this.authService.getToken();
+    return this.http
+      .post(
+        "https://ang-classifieds.firebaseio.com/favorites.json?auth=" + token,
+        item
+      )
+      .subscribe(response => console.log(response));
   }
 }

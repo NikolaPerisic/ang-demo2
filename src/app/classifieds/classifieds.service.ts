@@ -33,7 +33,8 @@ export class ClassifiedsService {
               val.name,
               val.description,
               val.imageUrl,
-              val.price
+              val.price,
+              key
             );
             adArray.push(item);
           });

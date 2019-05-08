@@ -26,7 +26,7 @@ import { HomeComponent } from "./home/home.component";
     LoginComponent
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
-  providers: [ClassifiedsService, AuthService, AuthGuard, FavoritesService],
+  providers: [ClassifiedsService, FavoritesService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
