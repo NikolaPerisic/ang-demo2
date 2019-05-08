@@ -16,7 +16,10 @@ export class ClassifiedsDetailComponent implements OnInit {
   constructor(
     private favoritesService: FavoritesService,
     private route: ActivatedRoute,
+<<<<<<< HEAD
+=======
     private router: Router,
+>>>>>>> 231075dd08569fa8be2be6bb4348c513909f901c
     private classifiedsService: ClassifiedsService,
     private authService: AuthService
   ) {}
