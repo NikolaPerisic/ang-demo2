@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Classified } from "../classified.model";
 import { FavoritesService } from "src/app/favorites-list/favorites.service";
-import { ActivatedRoute, Params } from "@angular/router";
+import { ActivatedRoute, Params, Router } from "@angular/router";
 import { ClassifiedsService } from "../classifieds.service";
 import { AuthService } from "src/app/auth/auth.service";
 
@@ -12,19 +12,20 @@ import { AuthService } from "src/app/auth/auth.service";
 })
 export class ClassifiedsDetailComponent implements OnInit {
   classified: Classified;
-  id: number;
+  id: string;
   constructor(
     private favoritesService: FavoritesService,
     private route: ActivatedRoute,
+    private router: Router,
     private classifiedsService: ClassifiedsService,
     private authService: AuthService
   ) {}
 
   ngOnInit() {
-    // this.route.params.subscribe((params: Params) => {
-    //   this.id = +params["id"];
-    //   this.classified = this.classifiedsService.getClassified(this.id);
-    // });
+    this.route.params.subscribe((params: Params) => {
+      this.id = params["id"];
+      this.classified = this.classifiedsService.getClassified(this.id);
+    });
   }
   //
   addToFavorites(favoriteItem: Classified) {

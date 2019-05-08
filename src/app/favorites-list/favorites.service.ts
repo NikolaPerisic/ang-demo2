@@ -42,7 +42,6 @@ export class FavoritesService {
     return this.favoritesArr;
   }
   postFavorite(item: Favorite) {
-    console.log("call");
     const token = this.authService.getToken();
     return this.http
       .post(

@@ -19,8 +19,8 @@
 </div> -->
 <div>
   <app-classifieds-item
-    *ngFor="let item of classifieds; let i = index"
+    *ngFor="let item of classifieds"
     [classified]="item"
-    [index]="i"
+    [index]="item.id"
   ></app-classifieds-item>
 </div>

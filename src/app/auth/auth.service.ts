@@ -59,4 +59,7 @@ export class AuthService {
     this.userEmail = firebase.auth().currentUser.email;
     return this.userEmail;
   }
+  getTokenStatus() {
+    return this.token !== null;
+  }
 }

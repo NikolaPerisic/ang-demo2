@@ -17,8 +17,14 @@ export class ClassifiedsService {
   //
 
   classifieds: Classified[] = [];
-  getClassified(id: number) {
-    return this.classifieds[id];
+  getClassified(id: string): Classified {
+    let item: Classified;
+    this.classifieds.map(el => {
+      if (el.id === id) {
+        item = el;
+      }
+    });
+    return item;
   }
   getClassifieds(): Observable<Classified[]> {
     return this.http
