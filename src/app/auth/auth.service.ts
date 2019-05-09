@@ -55,7 +55,7 @@ export class AuthService {
       .catch(error => console.log(error));
   }
   getUser() {
-    this.userEmail = firebase.auth().currentUser.email;
+    // this.userEmail = firebase.auth().currentUser.email;
     return this.userEmail;
   }
   getTokenStatus() {
