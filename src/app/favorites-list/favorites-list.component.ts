@@ -2,8 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { FavoritesService } from "./favorites.service";
 import { Classified } from "../classifieds/classified.model";
 import { ClassifiedsService } from "../classifieds/classifieds.service";
-import { AuthService } from "../auth/auth.service";
-import { ThrowStmt } from "@angular/compiler";
 
 @Component({
   selector: "app-favorites-list",
@@ -12,39 +10,29 @@ import { ThrowStmt } from "@angular/compiler";
 })
 export class FavoritesListComponent implements OnInit {
   //
-  favorites: Classified[] = [];
-  favoriteIds: string[] = [];
+  private favoriteIds;
+  private favorites = new Set<Classified>();
   //
   constructor(
     private favoritesService: FavoritesService,
-    private classifiedsService: ClassifiedsService,
-    private authService: AuthService
+    private classifiedsService: ClassifiedsService
   ) {}
 
   ngOnInit() {
-    let currentUserEmail: any = this.authService.getUser();
-    if (!currentUserEmail) {
-      return null;
-    }
     this.favoritesService.getFavorites().subscribe(result => {
-      for (let id in result) {
-        if (result[id].email === currentUserEmail) {
-          this.favoriteIds.push(result[id].classifiedId);
-        }
-      }
+      this.favoriteIds = result;
     });
-    this.classifiedsService
-      .getClassifieds()
-      .subscribe((result: Classified[]) => {
-        this.favoriteIds.forEach(el => {
-          result.map(item => {
-            if (item.id === el) {
-              this.favorites.push(item);
-              return this.favorites;
-            }
-          });
+    this.classifiedsService.getClassifieds().subscribe(result => {
+      this.favoriteIds.forEach(el => {
+        console.log(this.favoriteIds);
+        result.map(item => {
+          if (item.id === el) {
+            this.favorites.add(item);
+            console.log(this.favorites);
+          }
         });
       });
+    });
   }
   removeFavorite(favorite: Classified) {
     this.favoritesService.removeFavorite(favorite);
