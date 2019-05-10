@@ -8,14 +8,21 @@ import { User } from "firebase";
 export class AuthService {
   token: string | null = null;
   userEmail: string | null = null;
+  username: string | null = null;
   constructor(private router: Router) {}
   //
-  signUp(email: string, password: string) {
+  signUp(email: string, password: string, userName: string) {
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then(response => {
-        this.router.navigate(["/login"]);
+        let user = firebase.auth().currentUser;
+        user
+          .updateProfile({ displayName: userName })
+          .then(() => {
+            this.router.navigate(["/login"]);
+          })
+          .catch(error => console.log(error));
       })
       .catch(error => console.log(error));
   }
@@ -25,6 +32,7 @@ export class AuthService {
       .signInWithEmailAndPassword(email, password)
       .then(response => {
         this.userEmail = firebase.auth().currentUser.email;
+        this.username = firebase.auth().currentUser.displayName;
         this.router.navigate(["/classifieds"]);
         firebase
           .auth()
@@ -58,6 +66,11 @@ export class AuthService {
     // this.userEmail = firebase.auth().currentUser.email;
     return this.userEmail;
   }
+  getUsername() {
+    // this.userEmail = firebase.auth().currentUser.email;
+    return this.username;
+  }
+
   getTokenStatus() {
     return this.token !== null;
   }

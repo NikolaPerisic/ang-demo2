@@ -3,6 +3,19 @@
     <div class="col-sm-12 col-md-8 col-lg-6">
       <form (ngSubmit)="onSignup(myForm)" #myForm="ngForm">
         <div class="form-group">
+          <label for="username">User Name</label>
+          <input
+            class="form-control"
+            type="username"
+            name="username"
+            id="username"
+            autocomplete="username"
+            required
+            placeholder="User Name"
+            ngModel
+          />
+        </div>
+        <div class="form-group">
           <label for="email">Email</label>
           <input
             class="form-control"

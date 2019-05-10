@@ -10,8 +10,7 @@ import { ClassifiedsService } from "../classifieds/classifieds.service";
 })
 export class FavoritesListComponent implements OnInit {
   //
-  private favoriteIds;
-  private favorites = new Set<Classified>();
+  private favorites: Classified[];
   //
   constructor(
     private favoritesService: FavoritesService,
@@ -20,18 +19,7 @@ export class FavoritesListComponent implements OnInit {
 
   ngOnInit() {
     this.favoritesService.getFavorites().subscribe(result => {
-      this.favoriteIds = result;
-    });
-    this.classifiedsService.getClassifieds().subscribe(result => {
-      this.favoriteIds.forEach(el => {
-        console.log(this.favoriteIds);
-        result.map(item => {
-          if (item.id === el) {
-            this.favorites.add(item);
-            console.log(this.favorites);
-          }
-        });
-      });
+      this.favorites = result;
     });
   }
   removeFavorite(favorite: Classified) {
