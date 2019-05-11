@@ -4,11 +4,10 @@ import { AuthService } from "../auth/auth.service";
 import { map } from "rxjs/operators";
 import { User } from "./user.model";
 import { HttpClient } from "@angular/common/http";
-import { ClassifiedsService } from "../classifieds/classifieds.service";
 
 @Injectable()
 export class FavoritesService {
-  private userFavorites: Classified[];
+  private userFavorites: Classified[] = [];
 
   private currentUser: User = {
     id: "",
@@ -17,31 +16,47 @@ export class FavoritesService {
     favorites: []
   };
   //
-  constructor(
-    private authService: AuthService,
-    private http: HttpClient,
-    private classifiedsService: ClassifiedsService
-  ) {}
+  constructor(private authService: AuthService, private http: HttpClient) {}
   //
   //
   addNewToFavorites(item: Classified) {
-    this.currentUser.email = this.authService.getUser();
+    this.getFavorites();
+    console.log(this.userFavorites);
+    let duplicate = false;
+    this.currentUser.email = this.authService.getUserEmail();
     this.currentUser.username = this.authService.getUsername();
-    this.currentUser.favorites.push(item);
-    this.postFavorite(this.currentUser);
+    if (this.userFavorites.length > 0) {
+      this.userFavorites.forEach(favorite => {
+        if (favorite.id === item.id) {
+          console.log("duplicate");
+          duplicate = true;
+          return null;
+        }
+      });
+    }
+    if (!duplicate) {
+      this.userFavorites.push(item);
+      this.currentUser.favorites = this.userFavorites;
+      this.postFavorite(this.currentUser);
+    }
   }
   getFavorites() {
-    const currentUserEmail = this.authService.getUser();
+    let newUserEmail = this.authService.getUserEmail();
+    if (newUserEmail !== this.currentUser.email) {
+      this.clearUser();
+    }
+    this.currentUser.email = newUserEmail;
     return this.http
-      .get("https://ang-classifieds.firebaseio.com/users.json")
+      .get(`https://ang-classifieds.firebaseio.com/users.json`)
       .pipe(
         map(data => {
-          for (let item in data) {
-            if (data[item].email === currentUserEmail) {
-              this.userFavorites = data[item].favorites;
+          for (let id in data) {
+            if (data[id].email === this.currentUser.email) {
+              this.userFavorites = data[id].favorites;
+              this.currentUser.id = id;
+              return this.userFavorites;
             }
           }
-          return this.userFavorites;
         })
       );
   }
@@ -56,13 +71,37 @@ export class FavoritesService {
   }
   postFavorite(user) {
     const token = this.authService.getToken();
-    return this.http
-      .post(
-        "https://ang-classifieds.firebaseio.com/users.json?auth=" + token,
-        user
-      )
-      .subscribe(response => {
-        console.log(response);
-      });
+    if (this.currentUser.id) {
+      return this.http
+        .put(
+          `https://ang-classifieds.firebaseio.com/users/${
+            this.currentUser.id
+          }.json?auth=` + token,
+          user
+        )
+        .subscribe(response => {
+          console.log(response);
+        });
+    } else {
+      return this.http
+        .post(
+          "https://ang-classifieds.firebaseio.com/users.json?auth=" + token,
+          user
+        )
+        .subscribe(response => {
+          for (let id in response) {
+            this.currentUser.id = response[id];
+          }
+        });
+    }
+  }
+  clearUser() {
+    this.currentUser = {
+      id: "",
+      email: "",
+      username: "",
+      favorites: []
+    };
+    this.userFavorites = [];
   }
 }

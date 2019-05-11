@@ -4,6 +4,7 @@ import { ClassifiedsService } from "../classifieds.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { User } from "firebase";
 import { AuthService } from "src/app/auth/auth.service";
+import { FavoritesService } from "src/app/favorites-list/favorites.service";
 @Component({
   selector: "app-classifieds-list",
   templateUrl: "./classifieds-list.component.html",
@@ -19,13 +20,14 @@ export class ClassifiedsListComponent implements OnInit {
     private classifiedsService: ClassifiedsService,
     private route: ActivatedRoute,
     private router: Router,
-    private authService: AuthService
+    private favoritesService: FavoritesService
   ) {}
 
   ngOnInit() {
     this.classifiedsService.getClassifieds().subscribe(result => {
       this.classifieds = result;
     });
+    this.favoritesService.getFavorites().subscribe();
   }
 
   newAd() {

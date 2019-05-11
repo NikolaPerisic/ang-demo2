@@ -2,7 +2,6 @@ import firebase from "@firebase/app";
 import "@firebase/auth";
 import { Router } from "@angular/router";
 import { Injectable } from "@angular/core";
-import { User } from "firebase";
 
 @Injectable()
 export class AuthService {
@@ -62,7 +61,7 @@ export class AuthService {
       })
       .catch(error => console.log(error));
   }
-  getUser() {
+  getUserEmail() {
     // this.userEmail = firebase.auth().currentUser.email;
     return this.userEmail;
   }
