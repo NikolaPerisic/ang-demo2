@@ -13,7 +13,7 @@ export class FavoritesService {
     id: "",
     email: "",
     username: "",
-    favorites: []
+    favorites: [] = []
   };
   //
   constructor(private authService: AuthService, private http: HttpClient) {}
@@ -21,14 +21,12 @@ export class FavoritesService {
   //
   addNewToFavorites(item: Classified) {
     this.getFavorites();
-    console.log(this.userFavorites);
     let duplicate = false;
     this.currentUser.email = this.authService.getUserEmail();
     this.currentUser.username = this.authService.getUsername();
     if (this.userFavorites.length > 0) {
       this.userFavorites.forEach(favorite => {
         if (favorite.id === item.id) {
-          console.log("duplicate");
           duplicate = true;
           return null;
         }
@@ -52,7 +50,11 @@ export class FavoritesService {
         map(data => {
           for (let id in data) {
             if (data[id].email === this.currentUser.email) {
-              this.userFavorites = data[id].favorites;
+              if (!data[id].favorites) {
+                this.userFavorites = [];
+              } else {
+                this.userFavorites = data[id].favorites;
+              }
               this.currentUser.id = id;
               return this.userFavorites;
             }
@@ -62,12 +64,13 @@ export class FavoritesService {
   }
 
   removeFavorite(item: Classified) {
-    // this.favoritesArr.map((el, i) => {
-    //   if (el.name === item.name) {
-    //     this.favoritesArr.splice(i, 1);
-    //   }
-    // });
-    // return this.favoritesArr;
+    this.userFavorites.forEach((favorite, index) => {
+      if (favorite.id === item.id) {
+        this.userFavorites.splice(index, 1);
+      }
+    });
+    this.currentUser.favorites = this.userFavorites;
+    this.postFavorite(this.currentUser);
   }
   postFavorite(user) {
     const token = this.authService.getToken();
@@ -79,9 +82,7 @@ export class FavoritesService {
           }.json?auth=` + token,
           user
         )
-        .subscribe(response => {
-          console.log(response);
-        });
+        .subscribe();
     } else {
       return this.http
         .post(
