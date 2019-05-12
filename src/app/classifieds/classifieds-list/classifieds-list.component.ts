@@ -15,6 +15,7 @@ export class ClassifiedsListComponent implements OnInit {
   user: User;
   //
   classifieds: Classified[];
+  searchItem;
 
   constructor(
     private classifiedsService: ClassifiedsService,
@@ -29,7 +30,11 @@ export class ClassifiedsListComponent implements OnInit {
     });
     this.favoritesService.getFavorites().subscribe();
   }
-
+  search(term: string) {
+    return this.classifieds.filter(el => {
+      return el.name.includes(term);
+    });
+  }
   newAd() {
     this.router.navigate(["new"], { relativeTo: this.route });
   }

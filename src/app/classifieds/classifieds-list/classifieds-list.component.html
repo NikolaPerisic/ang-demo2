@@ -1,10 +1,19 @@
-<div class="row">
-  <div class="col-sm-12">
-    <div class="btn btn-success mt-3" (click)="newAd()">New Ad</div>
-    <hr />
+<div class="row mt-5">
+  <div class="col-sm-12 ml-0 pl-0">
+    <div class="classifieds-list-search mb-1">
+      <input
+        [(ngModel)]="searchItem"
+        type="text"
+        class="form-control list-search"
+        placeholder=" search classifieds ads"
+        name="search"
+      />
+      <button class="btn btn-primary btn-large search-main" (click)="search()">
+        Search
+      </button>
+    </div>
   </div>
-</div>
-<!-- <div class="card mb-3" *ngFor="let ad of classifieds">
+  <!-- <div class="card mb-3" *ngFor="let ad of classifieds">
   <img class="card-img-top" src="{{ ad.imageUrl }}" alt="Card image cap" />
   <div class="card-body">
     <h5 class="card-title">Card title</h5>
@@ -17,10 +26,12 @@
     </p>
   </div>
 </div> -->
-<div>
-  <app-classifieds-item
-    *ngFor="let item of classifieds"
-    [classified]="item"
-    [index]="item.id"
-  ></app-classifieds-item>
+  <div>
+    <app-classifieds-item
+      *ngFor="let item of classifieds"
+      [classified]="item"
+      [index]="item.id"
+    ></app-classifieds-item>
+    <div class="btn btn-success mt-3" (click)="newAd()">New Ad</div>
+  </div>
 </div>

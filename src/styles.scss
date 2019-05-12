@@ -1,1 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
+
+html {
+  height: 100%;
+  width: 100%;
+}
+body {
+  font-family: "Lato", sans-serif;
+  background-color: #c3c3c3;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

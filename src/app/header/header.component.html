@@ -14,21 +14,41 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item" routerLinkActive="active">
+      <li
+        class="nav-item"
+        data-toggle="collapse"
+        data-target=".navbar-collapse.show"
+        routerLinkActive="active"
+      >
         <a class="nav-link" routerLink="/classifieds"
           >Classifieds <span class="sr-only">(current)</span></a
         >
       </li>
-      <li class="nav-item" routerLinkActive="active">
+      <li
+        class="nav-item"
+        data-toggle="collapse"
+        data-target=".navbar-collapse.show"
+        routerLinkActive="active"
+      >
         <a class="nav-link" routerLink="/favorites">Favorites</a>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto">
       <ng-template [ngIf]="!authService.isAuthenticated()">
-        <li class="nav-item mr-auto" routerLinkActive="active">
+        <li
+          class="nav-item mr-auto"
+          data-toggle="collapse"
+          data-target=".navbar-collapse.show"
+          routerLinkActive="active"
+        >
           <a class="nav-link" routerLink="/signup">Sign Up</a>
         </li>
-        <li class="nav-item mr-auto" routerLinkActive="active">
+        <li
+          class="nav-item mr-auto"
+          data-toggle="collapse"
+          data-target=".navbar-collapse.show"
+          routerLinkActive="active"
+        >
           <a class="nav-link" routerLink="/login">Login</a>
         </li>
       </ng-template>
