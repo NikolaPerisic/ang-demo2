@@ -8,6 +8,7 @@ import { ClassifiedsItemComponent } from "./classifieds-list/classifieds-item/cl
 import { ClassifiedStartComponent } from "./classified-start/classified-start.component";
 import { ClassifiedNewComponent } from "./classified-new/classified-new.component";
 import { FormsModule } from "@angular/forms";
+import { FilterPipe } from "../filter.pipe";
 
 @NgModule({
   declarations: [
@@ -16,8 +17,10 @@ import { FormsModule } from "@angular/forms";
     ClassifiedsDetailComponent,
     ClassifiedsItemComponent,
     ClassifiedStartComponent,
-    ClassifiedNewComponent
+    ClassifiedNewComponent,
+    FilterPipe
   ],
-  imports: [CommonModule, ClassifiedsRoutingModule, FormsModule]
+  imports: [CommonModule, ClassifiedsRoutingModule, FormsModule],
+  exports: [FilterPipe]
 })
 export class ClassifiedsModule {}

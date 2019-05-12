@@ -57,7 +57,7 @@ export class AuthService {
       .then(response => {
         this.token = null;
         this.userEmail = null;
-        this.router.navigate(["/classifieds"]);
+        this.router.navigate(["/"]);
       })
       .catch(error => console.log(error));
   }

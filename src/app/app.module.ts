@@ -15,6 +15,8 @@ import { AuthService } from "./auth/auth.service";
 import { AuthGuard } from "./auth/auth-guard.service";
 import { FavoritesService } from "./favorites-list/favorites.service";
 import { HomeComponent } from "./home/home.component";
+import { CommonModule } from "@angular/common";
+import { SearchService } from "./classifieds/classifieds-list/search.service";
 
 @NgModule({
   declarations: [
@@ -25,8 +27,20 @@ import { HomeComponent } from "./home/home.component";
     SignupComponent,
     LoginComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
-  providers: [ClassifiedsService, FavoritesService, AuthService, AuthGuard],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    CommonModule
+  ],
+  providers: [
+    ClassifiedsService,
+    FavoritesService,
+    AuthService,
+    AuthGuard,
+    SearchService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

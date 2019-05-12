@@ -2,13 +2,13 @@
   <div class="col-sm-12 ml-0 pl-0">
     <div class="classifieds-list-search mb-1">
       <input
-        [(ngModel)]="searchItem"
+        [(ngModel)]="queryString"
         type="text"
         class="form-control list-search"
         placeholder=" search classifieds ads"
         name="search"
       />
-      <button class="btn btn-primary btn-large search-main" (click)="search()">
+      <button class="btn btn-primary btn-large search-main">
         Search
       </button>
     </div>
@@ -28,7 +28,7 @@
 </div> -->
   <div>
     <app-classifieds-item
-      *ngFor="let item of classifieds"
+      *ngFor="let item of classifieds | filter: queryString"
       [classified]="item"
       [index]="item.id"
     ></app-classifieds-item>
