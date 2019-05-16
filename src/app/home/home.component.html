@@ -8,6 +8,7 @@
         placeholder="search classifieds ads"
         name="search"
         #term
+        (keydown.enter)="search(term.value)"
       />
       <button
         class="btn btn-primary btn-large search-main"

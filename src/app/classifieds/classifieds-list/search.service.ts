@@ -12,4 +12,8 @@ export class SearchService {
   searchedString() {
     return this.searchTerm;
   }
+  clearString() {
+    this.searchTerm = "";
+    return this.searchTerm;
+  }
 }

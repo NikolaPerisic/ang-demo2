@@ -33,7 +33,7 @@ export class ClassifiedsListComponent implements OnInit {
     });
     this.favoritesService.getFavorites().subscribe();
     this.queryString = this.searchService.searchedString();
-    console.log(this.queryString);
+    this.searchService.clearString();
   }
 
   newAd() {

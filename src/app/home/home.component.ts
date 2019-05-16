@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { NgForm } from "@angular/forms";
 import { SearchService } from "../classifieds/classifieds-list/search.service";
 
 @Component({
@@ -13,7 +12,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {}
   search(term) {
-    this.searchService.userInput(term);
-    this.router.navigate(["/classifieds"]);
+    this.router.navigate(["/classifieds"]).then(() => {
+      this.searchService.userInput(term);
+    });
   }
 }
