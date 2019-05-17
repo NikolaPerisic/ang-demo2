@@ -8,7 +8,7 @@
         placeholder=" search classifieds ads"
         name="search"
       />
-      <button class="btn btn-primary btn-large search-main">
+      <button class="btn btn-info btn-large search-main">
         Search
       </button>
     </div>
@@ -19,6 +19,8 @@
       [classified]="item"
       [index]="item.id"
     ></app-classifieds-item>
-    <div class="btn btn-success mt-3" (click)="newAd()">New Ad</div>
+    <div class="btn btn-info btn-lg btn-block mt-1" (click)="newAd()">
+      New Ad
+    </div>
   </div>
 </div>
