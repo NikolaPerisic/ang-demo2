@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { User } from "firebase";
 import { FavoritesService } from "src/app/favorites-list/favorites.service";
 import { SearchService } from "./search.service";
+import { AuthService } from "src/app/auth/auth.service";
 
 //
 @Component({
@@ -24,7 +25,8 @@ export class ClassifiedsListComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private favoritesService: FavoritesService,
-    private searchService: SearchService
+    private searchService: SearchService,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {

@@ -19,8 +19,17 @@
       [classified]="item"
       [index]="item.id"
     ></app-classifieds-item>
-    <div class="btn btn-info btn-lg btn-block mt-1" (click)="newAd()">
-      New Ad
+    <div>
+      <button
+        [disabled]="!authService.isAuthenticated()"
+        class="btn btn-info btn-lg btn-block mt-1"
+        (click)="newAd()"
+      >
+        New Ad
+      </button>
+      <span *ngIf="!authService.isAuthenticated()"
+        >Please Login to post new Ad!</span
+      >
     </div>
   </div>
 </div>
